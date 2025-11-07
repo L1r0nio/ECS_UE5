@@ -24,14 +24,19 @@ bool UEntity::IsActive() const
 
 
 
+void UEntity::SetActor(AActor* actor)
+{
+	boundActor = actor;
+}
+
 AActor* UEntity::GetActor() const
 {
 	return boundActor.Get();
 }
 
-void UEntity::SetActor(AActor* actor)
+ACharacter* UEntity::GetCharacter() const
 {
-	boundActor = actor;
+	return GetActorAs<ACharacter>();
 }
 
 

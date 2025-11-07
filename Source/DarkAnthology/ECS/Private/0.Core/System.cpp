@@ -73,7 +73,7 @@ ComponentMask USystem::GetUnneededComponent() const
 
 
 
-bool USystem::ShouldProcessEntity(const UEntity* entity) const
+bool USystem::ShouldProcessEntity(UEntity* entity) const
 {
 	if (!entity || !entity->IsActive())
 		return false;
@@ -86,7 +86,13 @@ bool USystem::ShouldProcessEntity(const UEntity* entity) const
 
 	if (cachedExcludedMask != 0 && (entity->GetComponentMask() & cachedExcludedMask) != 0)
 		return false;
+	
 
+	return GetAdditionalConditions(entity);
+}
+
+bool USystem::GetAdditionalConditions(UEntity* entity) const
+{
 	return true;
 }
 

@@ -1,23 +1,22 @@
 ﻿// L1 Game copyright. 2025. All rights reserved, probably :)
-#include "DarkAnthology/Game/Public/1.Entity/TestEntity.h"
-#include "DarkAnthology/Game/Public/4.Message/EntityLife/RegisterUnRegisterEntityMessage.h"
+#include "Public/1.Entity/TestEntity2.h"
 #include "DarkAnthology/ECS/Public/0.Core/Entity.h"
 #include "DarkAnthology/ECS/Public/0.Core/Message.h"
 #include "Public/2.Component/Utility/Carriers/EntityTypeComponent.h"
+#include "Public/4.Message/EntityLife/RegisterUnRegisterEntityMessage.h"
 
 
-ATestEntity::ATestEntity(const FObjectInitializer& objectInitializer) : Super(objectInitializer)
+ATestEntity2::ATestEntity2(const FObjectInitializer& objectInitializer) : Super(objectInitializer)
 {
 	PrimaryActorTick.bCanEverTick = false;
 
-	entity = objectInitializer.CreateDefaultSubobject<UEntity>(this, "TestEntity");
-
+	entity = objectInitializer.CreateDefaultSubobject<UEntity>(this, "TestEntity2");
 	UEntityTypeComponent* entityTypeComponent = entity->AddComponent<UEntityTypeComponent>();
-	entityTypeComponent->EntityType = EEntityType::TestActor;
+	entityTypeComponent->EntityType = EEntityType::TestActor2;
 }
 
 
-void ATestEntity::BeginPlay()
+void ATestEntity2::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -33,3 +32,5 @@ void ATestEntity::BeginPlay()
 		}
 	}
 }
+
+

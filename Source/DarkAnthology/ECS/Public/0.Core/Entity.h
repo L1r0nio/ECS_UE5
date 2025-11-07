@@ -1,6 +1,7 @@
 ﻿// L1 Game copyright. 2025. All rights reserved, probably :)
 #pragma once
 #include "CoreMinimal.h"
+#include "GameFramework/Character.h"
 #include "Component.h"
 #include "UObject/Object.h"
 #include "Entity.generated.h"
@@ -15,15 +16,23 @@ class DARKANTHOLOGY_API UEntity : public UObject
 public:
 	UEntity();
 	virtual ~UEntity() override = default;
-	
-	bool IsActive() const;
+
 	void SetActive(const bool bNewActive);
+	bool IsActive() const;
 	
+	void SetActor(AActor* actor);	
 	AActor* GetActor() const;
-	void SetActor(AActor* actor);
+	ACharacter* GetCharacter() const;
 	
 	bool HasComponents(ComponentMask mask) const;
 	ComponentMask GetComponentMask() const;
+
+	template <typename T>
+	T* GetActorAs() const
+	{
+		static_assert(TIsDerivedFrom<T, AActor>::IsDerived, "T must derive from AActor");
+		return Cast<T>(boundActor.Get());
+	}
 	
 	template <typename T>
 	bool HasComponent()
@@ -60,7 +69,7 @@ public:
 			componentMask &= ~(1ULL << typeID);
 		}
 	}
-	
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category ="ECS|Components")
 	TArray<UComponent*> components;

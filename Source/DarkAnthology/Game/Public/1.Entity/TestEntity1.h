@@ -2,23 +2,23 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "TestEntity.generated.h"
+#include "TestEntity1.generated.h"
 
 
 class UEntity;
 
 UCLASS()
-class DARKANTHOLOGY_API ATestEntity : public AActor
+class DARKANTHOLOGY_API ATestEntity1 : public AActor
 {
 	GENERATED_BODY()
 
 public:
-	ATestEntity(const FObjectInitializer& objectInitializer);
+	ATestEntity1(const FObjectInitializer& objectInitializer);
 
 protected:
 	virtual void BeginPlay() override;
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "ECS|Entity")
-	UEntity* entity;
+	TObjectPtr<UEntity> entity;
 };

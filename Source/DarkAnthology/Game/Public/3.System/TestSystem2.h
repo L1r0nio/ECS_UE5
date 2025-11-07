@@ -14,5 +14,7 @@ class DARKANTHOLOGY_API UTestSystem2 : public USystem
 public:
 	UTestSystem2();
 	virtual void Initialize() override;
-	virtual void Update(const float deltaTime) override;
+	virtual ComponentMask GetNeedComponents() const override;
+	virtual bool GetAdditionalConditions(UEntity* entity) const override;
+	virtual void Update(UEntity* entity, const float deltaTime) override;
 };

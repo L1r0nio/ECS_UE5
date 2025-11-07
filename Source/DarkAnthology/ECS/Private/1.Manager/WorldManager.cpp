@@ -81,7 +81,7 @@ void UWorldManager::UnRegisterEntity(const URegisterUnRegisterEntityMessage* mes
 	if (message && message->Entity)
 		entitiesToRemove.Enqueue(message->Entity);
 
-	//UE_LOG(LogTemp, Log, TEXT("Entity %s UnRegistered"), *message->Entity->GetActor()->GetName());
+	UE_LOG(LogTemp, Log, TEXT("Entity %s UnRegistered"), *message->Entity->GetActor()->GetName());
 }
 
 
@@ -96,8 +96,7 @@ void UWorldManager::UpdateWorld(const float deltaTime)
 		while (UEntity* entity = entitiesToAdd.Pop())
 			systemManager->RegisterEntity(entity);
 	}
-		
-
+	
 	if (systemManager)
 		systemManager->UpdateSystem(deltaTime);
 

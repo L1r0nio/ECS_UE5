@@ -22,18 +22,19 @@ ComponentMask UTestSystem1::GetNeedComponents() const
 	return UEntityTypeComponent::StaticTypeID();
 }
 
-
-void UTestSystem1::Update(const float deltaTime)
+bool UTestSystem1::GetAdditionalConditions(UEntity* entity) const
 {
-	GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Red, TEXT("Update"));
+	return entity->GetComponent<UEntityTypeComponent>()->EntityType == EEntityType::TestActor1;
 }
+
+
 
 void UTestSystem1::Update(UEntity* entity, const float deltaTime)
 {
 	const EEntityType entityType = entity->GetComponent<UEntityTypeComponent>()->EntityType;
-	const FString entityName = entity->GetName();
+	const FString entityName = entity->GetActor()->GetName();
 	
 	GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Red,
-		FString::Printf(TEXT("Entity type:%s \nHave name: %s"),
+		FString::Printf(TEXT("__UTestSystem1__Entity type:%s \nHave name: %s"),
 			*UEnum::GetValueAsString(entityType), *entityName));
 }

@@ -36,7 +36,8 @@ protected:
 	bool bNeedEntities;
 	TUniquePtr<TArray<UEntity*>> entities;
 
-	bool ShouldProcessEntity(const UEntity* entity) const;
+	bool ShouldProcessEntity(UEntity* entity) const;
+	virtual bool GetAdditionalConditions(UEntity* entity) const;
 	virtual void Update(UEntity* entity, const float deltaTime);
 	virtual void Update(const float deltaTime);
 
