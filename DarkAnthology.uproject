@@ -1,0 +1,26 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{31B256E0-4982-E7D0-6C34-0BA31DA5E6AE}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "DarkAnthology",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	],
+	"TargetPlatforms": [
+		"Windows",
+		"Linux"
+	]
+}
