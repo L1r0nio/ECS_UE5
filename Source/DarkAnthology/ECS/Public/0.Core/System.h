@@ -1,10 +1,12 @@
 ﻿// L1 Game copyright. 2025. All rights reserved, probably :)
 #pragma once
 #include "CoreMinimal.h"
-#include "Entity.h"
+#include "ECSTypes.h"
 #include "UObject/Object.h"
 #include "System.generated.h"
 
+
+class UEntity;
 
 
 UCLASS(Abstract, BlueprintType, Blueprintable)
@@ -24,6 +26,7 @@ public:
 
 	virtual ComponentMask GetNeedComponents() const;
 	virtual ComponentMask GetUnneededComponent() const;
+	virtual bool GetAdditionalConditions(UEntity* entity) const;
 
 	virtual void RegisterEntity(UEntity* entity);
 	virtual void UnregisterEntity(UEntity* entity);
@@ -37,7 +40,6 @@ protected:
 	TUniquePtr<TArray<UEntity*>> entities;
 
 	bool ShouldProcessEntity(UEntity* entity) const;
-	virtual bool GetAdditionalConditions(UEntity* entity) const;
 	virtual void Update(UEntity* entity, const float deltaTime);
 	virtual void Update(const float deltaTime);
 

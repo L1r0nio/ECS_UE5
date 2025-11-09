@@ -2,12 +2,15 @@
 #include "DarkAnthology/Game/Public/0.GameManager/MainGameMode.h"
 #include "DarkAnthology/Game/Public/0.GameManager/GameData/GameConst.h"
 #include "DarkAnthology/ECS/Public/1.Manager/WorldManager.h"
-
+#include "Public/3.System/Input/MainPlayerController.h"
+#include "Public/1.Entity/Character/MainPlayer/MainPlayer.h"
 
 
 AMainGameMode::AMainGameMode()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	DefaultPawnClass = AMainPlayer::StaticClass();
+	PlayerControllerClass = AMainPlayerController::StaticClass();
 }
 
 void AMainGameMode::BeginPlay()

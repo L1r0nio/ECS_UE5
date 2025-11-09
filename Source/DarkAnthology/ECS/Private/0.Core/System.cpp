@@ -1,6 +1,7 @@
 ﻿// L1 Game copyright. 2025. All rights reserved, probably :)
 #include "DarkAnthology/ECS/Public/0.Core/System.h"
 
+#include "DarkAnthology/ECS/Public/0.Core/Entity.h"
 
 
 USystem::USystem()

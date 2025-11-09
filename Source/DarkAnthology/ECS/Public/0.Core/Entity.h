@@ -1,13 +1,19 @@
 ﻿// L1 Game copyright. 2025. All rights reserved, probably :)
 #pragma once
 #include "CoreMinimal.h"
+#include "ECSTypes.h"
+#include "GameFramework/Actor.h"     // Для AActor
 #include "GameFramework/Character.h"
-#include "Component.h"
 #include "UObject/Object.h"
 #include "Entity.generated.h"
 
 
 
+class UComponent;
+class FObjectInitializer;
+
+
+/**The basic entity. It is created as a separate object inside the actor.*/
 UCLASS()
 class DARKANTHOLOGY_API UEntity : public UObject
 {
@@ -46,6 +52,20 @@ public:
 		return Cast<T>(components[T::StaticTypeID()]);
 	}
 	
+	template <typename TComponent>
+	TComponent* AddComponent(const FObjectInitializer& objectInitializer, const FName componentName)
+	{
+		static_assert(TIsDerivedFrom<TComponent, UComponent>::IsDerived, "T must derive from UComponent");
+		
+		if (HasComponent<TComponent>())
+			return GetComponent<TComponent>();
+
+		TComponent* component = objectInitializer.CreateDefaultSubobject<TComponent>(this, componentName);
+		components[TComponent::StaticTypeID()] = component;
+		componentMask |= component->GetMask();
+		return component;
+	}
+
 	template <typename TComponent>
 	TComponent* AddComponent()
 	{

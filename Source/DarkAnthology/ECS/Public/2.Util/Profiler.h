@@ -113,7 +113,9 @@ private:
 		TArray<float> sorted = TimeHistory;
 		sorted.Sort();
 
-		const int32 index95 = FMath::Clamp(FMath::FloorToInt(sorted.Num() * 0.95f), 0, sorted.Num() - 1);
+		const int32 index95 =
+			FMath::Clamp(FMath::FloorToInt(sorted.Num() * 0.95f), 0, sorted.Num() - 1);
+		
 		Percentile95 = sorted[index95];
 		
 		float variance = 0.0f;

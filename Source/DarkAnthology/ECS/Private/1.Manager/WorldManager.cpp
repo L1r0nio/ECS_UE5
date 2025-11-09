@@ -5,11 +5,7 @@
 #include "DarkAnthology/ECS/Public/0.Core/Entity.h"
 #include "DarkAnthology/ECS/Public/0.Core/System.h"
 #include "DarkAnthology/ECS/Public/1.Manager/SystemManager.h"
-#include "Public/3.System/TestSystem1.h"
-#include "Public/3.System/TestSystem2.h"
-#include "Public/3.System/TestSystem3.h"
-#include "Public/3.System/TestSystem4.h"
-#include "Public/3.System/TestSystem5.h"
+#include "Public/3.System/Physics/MovementSystem.h"
 
 
 void UWorldManager::Initialize(FSubsystemCollectionBase& collection)
@@ -58,11 +54,7 @@ void UWorldManager::RegisterSystem(USystem* system) const
 	if (system)
 		systemManager->RegisterSystem(system);
 
-	systemManager->RegisterSystem<UTestSystem1>();
-	systemManager->RegisterSystem<UTestSystem2>();
-	systemManager->RegisterSystem<UTestSystem3>();
-	systemManager->RegisterSystem<UTestSystem4>();
-	systemManager->RegisterSystem<UTestSystem5>();
+	systemManager->RegisterSystem<UMovementSystem>();
 }
 
 void UWorldManager::RegisterEntity(const URegisterUnRegisterEntityMessage* message)

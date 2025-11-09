@@ -20,6 +20,7 @@ struct FMessageSubscription
 
 
 
+/**The base class for messages. We will inherit from this if we want to create a message. After creating the message, you need to call Initialize() instead.*/
 UCLASS(Abstract, BlueprintType)
 class DARKANTHOLOGY_API UMessage : public UObject
 {
@@ -44,7 +45,7 @@ DECLARE_DELEGATE_OneParam(FMessageDelegate, const UMessage*);
 DECLARE_MULTICAST_DELEGATE_OneParam(FMessageMulticastDelegate, const UMessage*);
 
 
-
+/**Forwarding messages between systems.*/
 UCLASS()
 class DARKANTHOLOGY_API UMessageBus : public UObject
 {
@@ -82,17 +83,21 @@ public:
 	void Publish(TMessage* message)
 	{
 		static_assert(TIsDerivedFrom<TMessage, UMessage>::IsDerived, "TMessage must derive from UMessage");
-
-
+		
 		if (!message)
 			return;
 		
-		FString messageType = message->GetClass()->GetName();
+		const FString messageType = message->GetClass()->GetName();
 
 		if (bDeferredProcessing)
+		{
 			messageQueue.Enqueue(message);
+		}
+		
 		else
+		{
 			ProcessMessage(message);
+		}
 
 
 		messageStats.TotalPublished++;

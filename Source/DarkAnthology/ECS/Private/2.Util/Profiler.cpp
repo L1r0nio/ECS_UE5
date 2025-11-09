@@ -1,7 +1,6 @@
 ﻿// L1 Game copyright. 2025. All rights reserved, probably :)
 #include "DarkAnthology/ECS/Public/2.Util/Profiler.h"
 
-#include "DarkAnthology/ECS/Public/0.Core/Message.h"
 
 
 UProfiler::UProfiler()
@@ -51,6 +50,7 @@ void UProfiler::BeginProfile(const FString& systemName)
 void UProfiler::EndProfile(const FString& systemName, const int32 entityCount)
 {
 	FScopeLock Lock(&DataLock);
+	
 	if (!bIsEnabled)
 		return;
 	

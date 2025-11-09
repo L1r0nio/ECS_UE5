@@ -17,6 +17,7 @@ namespace ECSConstants
 }
 
 
+/**To register a component in the system. Assigns a unique ID to each component.*/
 class ComponentTypeCounter
 {
 public:

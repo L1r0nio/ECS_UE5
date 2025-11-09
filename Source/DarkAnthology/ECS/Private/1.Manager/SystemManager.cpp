@@ -1,5 +1,22 @@
 ﻿// L1 Game copyright. 2025. All rights reserved , probably :)
 #include "DarkAnthology/ECS/Public/1.Manager/SystemManager.h"
+#include "DarkAnthology/ECS/Public/0.Core/System.h"
+
+
+
+bool FParallelBatch::CanAddSystem(USystem* system) const
+{
+	if (!system || Systems.Contains(system))
+		return false;
+
+	return (system->GetNeedComponents() & CombinedMask) == 0;
+}
+
+void FParallelBatch::AddSystem(USystem* system)
+{
+	Systems.Add(system);
+	CombinedMask |= system->GetNeedComponents();
+}
 
 
 
@@ -37,15 +54,20 @@ void USystemManager::Shutdown()
 void USystemManager::RegisterEntity(UEntity* entity)
 {
 	if (entity)
+	{
 		for (USystem* system : RegisteredSystems)
 			system->RegisterEntity(entity);
+	}
 }
 
 void USystemManager::UnregisterEntity(UEntity* entity)
 {
 	if (entity)
+	{
 		for (USystem* system : RegisteredSystems)
 			system->UnregisterEntity(entity);
+	}
+		
 }
 
 void USystemManager::RegisterSystem(USystem* system)

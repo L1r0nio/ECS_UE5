@@ -6,6 +6,7 @@
 #include "Component.generated.h"
 
 
+/**The basic component. We will inherit from this to create a component.*/
 
 UCLASS(Abstract, BlueprintType, Blueprintable)
 class DARKANTHOLOGY_API UComponent : public UObject
@@ -21,6 +22,8 @@ public:
 };
 
 
+/**A macro for registering a component in the system and assigning it a unique ID.
+ *The macro is called after GENERATED_BODY()*/
 
 #define DECLARE_TYPED_COMPONENT(ClassName) \
 public: \

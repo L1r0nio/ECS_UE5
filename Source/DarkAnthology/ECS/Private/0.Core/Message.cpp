@@ -67,13 +67,17 @@ void UMessageBus::UnsubscribeAll(const UObject* subscriber)
 		return;
 
 	TArray<FMessageSubscription> toRemove;
-	
+
 	for (const FMessageSubscription& sub : activeSubscriptions)
+	{
 		if (sub.Subscriber == subscriber)
 			toRemove.Add(sub);
+	}
 
 	for (const FMessageSubscription& sub : toRemove)
+	{
 		Unsubscribe(sub);
+	}
 }
 
 void UMessageBus::ProcessMessageQueue()
@@ -100,7 +104,7 @@ void UMessageBus::ProcessMessage(const UMessage* message)
 
 	const FString messageType = message->GetClass()->GetName();
 
-	if (FMessageMulticastDelegate* delegate = messageHandlers.Find(messageType))
+	if (const FMessageMulticastDelegate* delegate = messageHandlers.Find(messageType))
 		delegate->Broadcast(message);
 
 	messageStats.TotalProcessed++;

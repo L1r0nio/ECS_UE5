@@ -1,9 +1,16 @@
 ﻿// L1 Game copyright. 2025. All rights reserved, probably :)
 #pragma once
 #include "CoreMinimal.h"
+#include "DarkAnthology/ECS/Public/0.Core/ECSTypes.h"
 #include "UObject/Object.h"
-#include "DarkAnthology/ECS/Public/0.Core/System.h"
 #include "SystemManager.generated.h"
+
+
+
+class USystem;
+class UEntity;
+
+
 
 USTRUCT()
 struct FParallelBatch
@@ -15,19 +22,8 @@ struct FParallelBatch
 	
 	ComponentMask CombinedMask = 0;
 
-	bool CanAddSystem(USystem* system) const
-	{
-		if (!system || Systems.Contains(system))
-			return false;
-
-		return (system->GetNeedComponents() & CombinedMask) == 0;
-	}
-
-	void AddSystem(USystem* system)
-	{
-		Systems.Add(system);
-		CombinedMask |= system->GetNeedComponents();
-	}
+	bool CanAddSystem(USystem* system) const;
+	void AddSystem(USystem* system);
 };
 
 
