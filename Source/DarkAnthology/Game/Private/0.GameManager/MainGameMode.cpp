@@ -34,7 +34,7 @@ void AMainGameMode::SetGameSettings() const
 
 
 
-void AMainGameMode::Tick(float deltaSeconds)
+void AMainGameMode::Tick(const float deltaSeconds)
 {
 	Super::Tick(deltaSeconds);
 
