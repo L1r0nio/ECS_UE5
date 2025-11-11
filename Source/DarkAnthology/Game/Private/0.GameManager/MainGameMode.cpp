@@ -4,22 +4,12 @@
 #include "DarkAnthology/ECS/Public/1.Manager/WorldManager.h"
 
 
+
+#pragma region SETTINGS
+
 AMainGameMode::AMainGameMode()
 {
 	PrimaryActorTick.bCanEverTick = true;
-}
-
-void AMainGameMode::BeginPlay()
-{
-	Super::BeginPlay();
-	SetGameSettings();
-	CreateObject();
-}
-
-void AMainGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
-{
-	Super::EndPlay(EndPlayReason);
-	worldManager = nullptr;
 }
 
 void AMainGameMode::SetGameSettings() const
@@ -42,6 +32,25 @@ void AMainGameMode::CreateObject()
 	worldManager = GetGameInstance()->GetSubsystem<UWorldManager>();
 }
 
+#pragma endregion
+
+
+
+#pragma region SYSTEM
+
+void AMainGameMode::BeginPlay()
+{
+	Super::BeginPlay();
+	CreateObject();
+	SetGameSettings();
+}
+
+void AMainGameMode::EndPlay(const EEndPlayReason::Type endPlayReason)
+{
+	Super::EndPlay(endPlayReason);
+	worldManager = nullptr;
+}
+
 void AMainGameMode::Tick(const float deltaSeconds)
 {
 	Super::Tick(deltaSeconds);
@@ -49,3 +58,5 @@ void AMainGameMode::Tick(const float deltaSeconds)
 	if (worldManager)
 		worldManager->UpdateWorld(deltaSeconds);
 }
+
+#pragma endregion

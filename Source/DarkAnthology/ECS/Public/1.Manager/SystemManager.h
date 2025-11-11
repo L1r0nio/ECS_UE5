@@ -34,9 +34,6 @@ class DARKANTHOLOGY_API USystemManager : public UObject
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(VisibleAnywhere)
-	TArray<USystem*> RegisteredSystems;
-	
 	USystemManager();
 	virtual ~USystemManager() override;
 	
@@ -53,7 +50,7 @@ public:
 		if (!system)
 			return;
 
-		RegisteredSystems.Add(system);
+		registeredSystems.Add(system);
 		bNeedsRebuild = true;
 		
 		UE_LOG(LogTemp, Warning, TEXT("System %s registered"), 
@@ -66,7 +63,12 @@ public:
 	void UnregisterSystem(USystem* system);
 	void UpdateSystem(const float deltaTime);
 
+	TArray<USystem*> GetRegisteredSystems() const;
+
 private:
+	UPROPERTY(VisibleAnywhere)
+	TArray<USystem*> registeredSystems;
+	
 	TArray<FParallelBatch> parallelBatches;
 	
 	bool bParallelExecutionEnabled;
@@ -74,5 +76,5 @@ private:
 	bool bNeedsRebuild;
 	
 	void RebuildBatches();
-	void ExecuteBatch(const FParallelBatch& batch, const float deltaTime);
+	void ExecuteBatch(const FParallelBatch& batch, const float deltaTime) const;
 };

@@ -6,9 +6,9 @@
 #include "WorldManager.generated.h"
 
 
+class URegisterUnregisterEntityMessage;
 class USystemManager;
 class UProfiler;
-class URegisterUnRegisterEntityMessage;
 class UEntity;
 class USystem;
 
@@ -32,6 +32,9 @@ private:
 	TQueue<UEntity*> entitiesToRemove;
 	
 	void RegisterSystem(USystem* system = nullptr) const;
-	void RegisterEntity(const URegisterUnRegisterEntityMessage* message);
-	void UnRegisterEntity(const URegisterUnRegisterEntityMessage* message);
+	void RegisterEntity(const URegisterUnregisterEntityMessage* message);
+	void UnRegisterEntity(const URegisterUnregisterEntityMessage* message);
+
+	inline void CreateObject();
+	inline void Subscribe();
 };

@@ -1,25 +1,49 @@
 ﻿// L1 Game copyright. 2025. All rights reserved, probably :)
 #include "DarkAnthology/ECS/Public/1.Manager/WorldManager.h"
-#include "DarkAnthology/Game/Public/4.Message/EntityLife/RegisterUnRegisterEntityMessage.h"
+#include "DarkAnthology/Game/Public/4.Message/EntityLife/RegisterUnregisterEntityMessage.h"
 #include "DarkAnthology/ECS/Public/0.Core/Message.h"
 #include "DarkAnthology/ECS/Public/0.Core/Entity.h"
 #include "DarkAnthology/ECS/Public/0.Core/System.h"
 #include "DarkAnthology/ECS/Public/1.Manager/SystemManager.h"
 
 
+#pragma region SETTINGS
+
 void UWorldManager::Initialize(FSubsystemCollectionBase& collection)
 {
 	Super::Initialize(collection);
+	CreateObject();
+	Subscribe();
+	
+	UE_LOG(LogTemp, Log, TEXT("WorldManager Initialized"));
+}
 
+void UWorldManager::Deinitialize()
+{
+	Super::Deinitialize();
+	UMessageBus::Shutdown();
+	systemManager = nullptr;
+	
+	UE_LOG(LogTemp, Log, TEXT("WorldManager Deinitialized"));
+}
+
+void UWorldManager::CreateObject()
+{
 	UMessageBus::Initialize();
 	
 	systemManager = NewObject<USystemManager>(this, TEXT("USystemManager"));
 	systemManager->Initialize();
+	
+	if (systemManager)
+		RegisterSystem();
+}
 
+void UWorldManager::Subscribe()
+{
 	if (UMessageBus* bus = UMessageBus::Get())
 	{
-		bus->Subscribe<URegisterUnRegisterEntityMessage>(this,
-		[this](const URegisterUnRegisterEntityMessage* message)
+		bus->Subscribe<URegisterUnregisterEntityMessage>(this,
+		[this](const URegisterUnregisterEntityMessage* message)
 		{
 			if (!message->UnRegisterEntity)
 				RegisterEntity(message);
@@ -28,25 +52,13 @@ void UWorldManager::Initialize(FSubsystemCollectionBase& collection)
 				UnRegisterEntity(message);
 		});
 	}
-
-	if (systemManager)
-		RegisterSystem();
-
-	UE_LOG(LogTemp, Log, TEXT("WorldManager Initialized"));
 }
 
-void UWorldManager::Deinitialize()
-{
-	Super::Deinitialize();
-	
-	systemManager = nullptr;
-	
-	UMessageBus::Shutdown();
-	
-	UE_LOG(LogTemp, Log, TEXT("WorldManager Deinitialized"));
-}
+#pragma endregion
 
 
+
+#pragma region SYSTEM
 
 void UWorldManager::RegisterSystem(USystem* system) const
 {
@@ -54,7 +66,7 @@ void UWorldManager::RegisterSystem(USystem* system) const
 		systemManager->RegisterSystem(system);
 }
 
-void UWorldManager::RegisterEntity(const URegisterUnRegisterEntityMessage* message)
+void UWorldManager::RegisterEntity(const URegisterUnregisterEntityMessage* message)
 {
 	if (message && message->Entity)
 	{
@@ -65,7 +77,7 @@ void UWorldManager::RegisterEntity(const URegisterUnRegisterEntityMessage* messa
 	}
 }
 
-void UWorldManager::UnRegisterEntity(const URegisterUnRegisterEntityMessage* message)
+void UWorldManager::UnRegisterEntity(const URegisterUnregisterEntityMessage* message)
 {
 	if (message && message->Entity)
 		entitiesToRemove.Enqueue(message->Entity);
@@ -73,11 +85,9 @@ void UWorldManager::UnRegisterEntity(const URegisterUnRegisterEntityMessage* mes
 	UE_LOG(LogTemp, Log, TEXT("Entity %s UnRegistered"), *message->Entity->GetActor()->GetName());
 }
 
-
-
 void UWorldManager::UpdateWorld(const float deltaTime)
 {
-	if (!systemManager || systemManager->RegisteredSystems.IsEmpty())
+	if (!systemManager || systemManager->GetRegisteredSystems().IsEmpty())
 		return;
 
 	if (!entitiesToAdd.IsEmpty())
@@ -97,3 +107,5 @@ void UWorldManager::UpdateWorld(const float deltaTime)
 			systemManager->UnregisterEntity(entity);
 	}
 }
+
+#pragma endregion

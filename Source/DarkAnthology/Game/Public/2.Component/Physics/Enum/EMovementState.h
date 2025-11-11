@@ -21,7 +21,7 @@ enum class EMovementState : uint8
 		Right,
 		Left,
 
-	
+
 	/**Addition*/
 		Jump,
 		UnCrouching,

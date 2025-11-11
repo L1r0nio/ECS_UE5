@@ -34,7 +34,7 @@ USystemManager::~USystemManager()
 
 void USystemManager::Initialize()
 {
-	RegisteredSystems.Empty();
+	registeredSystems.Empty();
 	parallelBatches.Empty();
 	bNeedsRebuild = true;
     
@@ -43,7 +43,7 @@ void USystemManager::Initialize()
 
 void USystemManager::Shutdown()
 {
-	RegisteredSystems.Empty();
+	registeredSystems.Empty();
 	parallelBatches.Empty();
 	
 	UE_LOG(LogTemp, Log, TEXT("SystemManager shutdown"));
@@ -55,7 +55,7 @@ void USystemManager::RegisterEntity(UEntity* entity)
 {
 	if (entity)
 	{
-		for (USystem* system : RegisteredSystems)
+		for (USystem* system : registeredSystems)
 			system->RegisterEntity(entity);
 	}
 }
@@ -64,7 +64,7 @@ void USystemManager::UnregisterEntity(UEntity* entity)
 {
 	if (entity)
 	{
-		for (USystem* system : RegisteredSystems)
+		for (USystem* system : registeredSystems)
 			system->UnregisterEntity(entity);
 	}
 		
@@ -72,10 +72,10 @@ void USystemManager::UnregisterEntity(UEntity* entity)
 
 void USystemManager::RegisterSystem(USystem* system)
 {
-	if (!system || RegisteredSystems.Contains(system))
+	if (!system || registeredSystems.Contains(system))
 		return;
 
-	RegisteredSystems.Add(system);
+	registeredSystems.Add(system);
 	bNeedsRebuild = true;
 
 	UE_LOG(LogTemp, Warning, TEXT("System %s registered"), 
@@ -87,7 +87,7 @@ void USystemManager::UnregisterSystem(USystem* system)
 	if (!system)
 		return;
 
-	RegisteredSystems.Remove(system);
+	registeredSystems.Remove(system);
 	bNeedsRebuild = true;
 
 	UE_LOG(LogTemp, Error, TEXT("System %s unregistered"), 
@@ -117,7 +117,7 @@ void USystemManager::RebuildBatches()
 	
 	parallelBatches.Empty();
 
-	TArray<USystem*> systemsToProcess  = RegisteredSystems;
+	TArray<USystem*> systemsToProcess= registeredSystems;
 
 	while (systemsToProcess.Num() > 0)
 	{
@@ -155,7 +155,7 @@ void USystemManager::RebuildBatches()
 	}
 
 	UE_LOG(LogTemp, Warning, TEXT("Created %d batches from %d systems:"), 
-		   parallelBatches.Num(), RegisteredSystems.Num());
+		   parallelBatches.Num(), registeredSystems.Num());
 
 	for (int32 i = 0; i < parallelBatches.Num(); ++i)
 	{
@@ -170,7 +170,7 @@ void USystemManager::RebuildBatches()
 	}
 }
 
-void USystemManager::ExecuteBatch(const FParallelBatch& batch, const float deltaTime)
+void USystemManager::ExecuteBatch(const FParallelBatch& batch, const float deltaTime) const
 {
 	TRACE_CPUPROFILER_EVENT_SCOPE(ExecuteBatch);
 	
@@ -211,4 +211,11 @@ void USystemManager::ExecuteBatch(const FParallelBatch& batch, const float delta
 	}, EParallelForFlags::None);
 
 	ECSProfiler->DrawRealtimeStats(GetWorld());
+}
+
+
+
+TArray<USystem*> USystemManager::GetRegisteredSystems() const
+{
+	return registeredSystems;
 }

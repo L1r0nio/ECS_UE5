@@ -2,7 +2,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "DarkAnthology/ECS/Public/0.Core/Message.h"
-#include "RegisterUnRegisterEntityMessage.generated.h"
+#include "RegisterUnregisterEntityMessage.generated.h"
 
 
 class UEntity;
@@ -10,7 +10,7 @@ class UEntity;
 
 
 UCLASS()
-class DARKANTHOLOGY_API URegisterUnRegisterEntityMessage : public UMessage
+class DARKANTHOLOGY_API URegisterUnregisterEntityMessage : public UMessage
 {
 	GENERATED_BODY()
 
