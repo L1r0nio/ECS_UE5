@@ -31,5 +31,5 @@ private:
 	inline void SetSettings();
 	inline void SetComponent();
 	
-	inline void SendMessage();
+	inline void SendMessage(const bool bIsUnregister = false);
 };

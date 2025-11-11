@@ -19,9 +19,6 @@ class DARKANTHOLOGY_API UMainPlayerMovementComponent : public UComponent
 
 public:
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<USpringArmComponent> SpringArmComponent;
-	
-	UPROPERTY(VisibleAnywhere)
 	FMovementState MovementStates = FMovementState();
 
 	UPROPERTY(VisibleAnywhere)

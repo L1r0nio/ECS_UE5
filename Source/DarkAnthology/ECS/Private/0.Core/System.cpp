@@ -7,7 +7,7 @@
 USystem::USystem()
 {
 	SetFlags(RF_NoFlags);
-	bIsEnable = true;
+	bIsEnable = false;
 	bMasksCached = false;
 	bNeedEntities = true;
 	bRequiresMainThread = true;

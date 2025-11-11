@@ -13,19 +13,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f193cf55-705d-4a36-ac2b-967d44ca4da6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/1.Entity/Character/MainPlayer/MainPlayer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Physics/Movement/MovementSystem.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Physics/Movement/MovementSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DarkAnthology/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DarkAnthology/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_LEVEL_/DebugLevel/Sublevel/L_Actor.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_LEVEL_/DebugLevel/Sublevel/L_Actor.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/1.Manager/SystemManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/1.Manager/SystemManager.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/0.Core/System.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/0.Core/System.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/1.Manager/WorldManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/1.Manager/WorldManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/1.Manager/SystemManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/1.Manager/SystemManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/1.Manager/WorldManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/1.Manager/WorldManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/0.GameManager/MainGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/0.GameManager/MainGameMode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/0.GameManager/MainGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/0.GameManager/MainGameMode.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/Enum/EMovementState.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/Enum/EMovementState.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/4.Message/EntityLife/RegisterUnRegisterEntityMessage.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/4.Message/EntityLife/RegisterUnregisterEntityMessage.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/System.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/System.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/1.Entity/Character/MainPlayer/MainPlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/1.Entity/Character/MainPlayer/MainPlayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/MainPlayerMovementComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/MainPlayerMovementComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/4.Message/EntityLife/RegisterUnregisterEntityMessage.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/4.Message/EntityLife/RegisterUnregisterEntityMessage.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,14 +38,19 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Source/DarkAnthology/Game/Private/1.Entity/Character/MainPlayer/MainPlayer.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Physics/Movement/MovementSystem.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayer.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayerData/MainPlayerConst.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/Enum/EMovementState.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/MainPlayerMovementComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/Struct/FMovementState.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Physics/Movement/MovementSystem.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../TestECS/Source/TestECS/Private/4.System/Input/MainPlayerController.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../TestECS/Source/TestECS/Private/4.System/Physics/Movment/MovmentCharacterSystem.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://E:/Program/UE_5.6/Engine/Source/Editor/BlueprintGraph/Private/K2Node_FunctionResult.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://E:/Program/UE_5.6/Engine/Source/Runtime/Core/Public/Containers/LockFreeList.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://E:/Program/UE_5.6/Engine/Source/Runtime/Core/Public/UObject/WeakObjectPtrTemplates.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://E:/Program/UE_5.6/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectPtr.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://E:/Program/UE_5.6/Engine/Source/Runtime/CoreUObject/Public/UObject/UObjectBaseUtility.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://E:/Program/UE_5.6/Engine/Source/Runtime/CoreUObject/Public/UObject/UObjectGlobals.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://E:/Program/UE_5.6/Engine/Source/Runtime/Engine/Classes/GameFramework/Actor.h" root0="FORCE_HIGHLIGHTING" />
@@ -211,7 +213,7 @@
       <workItem from="1762700277474" duration="4512000" />
       <workItem from="1762704892458" duration="7494000" />
       <workItem from="1762874538157" duration="3525000" />
-      <workItem from="1762878404310" duration="5058000" />
+      <workItem from="1762878404310" duration="8025000" />
     </task>
     <servers />
   </component>

@@ -6,7 +6,9 @@
 #include "System.generated.h"
 
 
+
 class UEntity;
+
 
 
 UCLASS(Abstract, BlueprintType, Blueprintable)

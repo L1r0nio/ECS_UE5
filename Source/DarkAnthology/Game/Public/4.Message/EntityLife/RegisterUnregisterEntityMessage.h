@@ -17,16 +17,9 @@ class DARKANTHOLOGY_API URegisterUnregisterEntityMessage : public UMessage
 public:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UEntity> Entity;
-	
 	bool UnRegisterEntity = false;
-
-	void Setup(UEntity* entity)
-	{
-		Entity = entity;
-		Initialize();
-	}
-
-	void Setup(UEntity* entity, const bool unRegister)
+	
+	void Setup(UEntity* entity, const bool unRegister = false)
 	{
 		Entity = entity;
 		UnRegisterEntity = unRegister;

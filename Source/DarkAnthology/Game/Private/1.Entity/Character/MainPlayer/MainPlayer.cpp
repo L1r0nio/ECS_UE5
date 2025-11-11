@@ -2,6 +2,7 @@
 #include "Public/1.Entity/Character/MainPlayer/MainPlayer.h"
 #include "DarkAnthology/ECS/Public/0.Core/Entity.h"
 #include "DarkAnthology/ECS/Public/0.Core/Message.h"
+#include "Public/2.Component/Physics/MainPlayerMovementComponent.h"
 #include "Public/2.Component/Utility/Carriers/EntityTypeComponent.h"
 #include "Public/4.Message/EntityLife/RegisterUnregisterEntityMessage.h"
 
@@ -28,6 +29,8 @@ void AMainPlayer::SetComponent()
 
 	UEntityTypeComponent* entityTypeComponent = entity->AddComponent<UEntityTypeComponent>();
 	entityTypeComponent->EntityType = EEntityType::MainPlayer;
+
+	entity->AddComponent<UMainPlayerMovementComponent>();
 }
 
 void AMainPlayer::SetSettings()
@@ -51,6 +54,7 @@ void AMainPlayer::BeginPlay()
 void AMainPlayer::EndPlay(const EEndPlayReason::Type endPlayReason)
 {
 	Super::EndPlay(endPlayReason);
+	SendMessage(true);
 	entity = nullptr;
 }
 
@@ -60,7 +64,7 @@ void AMainPlayer::EndPlay(const EEndPlayReason::Type endPlayReason)
 
 #pragma region ADDITIONAL METOD
 
-void AMainPlayer::SendMessage()
+void AMainPlayer::SendMessage(const bool bIsUnregister)
 {
 	if (!entity)
 		return;
@@ -68,7 +72,7 @@ void AMainPlayer::SendMessage()
 	if (UMessageBus* bus = UMessageBus::Get())
 	{
 		URegisterUnregisterEntityMessage* message = NewObject<URegisterUnregisterEntityMessage>(this);
-		message->Setup(entity);
+		message->Setup(entity, bIsUnregister);
 		bus->Publish(message);
 	}
 }
