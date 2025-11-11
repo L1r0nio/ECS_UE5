@@ -18,11 +18,13 @@ class DARKANTHOLOGY_API AMainGameMode : public AGameModeBase
 public:
 	AMainGameMode();
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void Tick(float deltaSeconds) override;
 
 private:
 	UPROPERTY(VisibleAnywhere);
 	UWorldManager* worldManager;
 
-	void SetGameSettings() const;
+	inline void SetGameSettings() const;
+	inline void CreateObject();
 };

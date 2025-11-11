@@ -13,38 +13,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f193cf55-705d-4a36-ac2b-967d44ca4da6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/_BLUPRINT_/--Character--/MainPlayer/BP_MainPlayer.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/1.Entity/Character/MainPlayer/MainPlayer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Input/MainPlayerController.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Physics/MovementSystem.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayerData/MainPlayerConst.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/Enum/EMovementState.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/MainPlayerMovementComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/Struct/FMovementState.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/Struct/FMovementState.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Input/MainPlayerController.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Physics/MovementSystem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DarkAnthology/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DarkAnthology/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_BLUPRINT_/BP_TestEntity1.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/_BLUPRINT_/BP_TestEntity2.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/_LEVEL_/DebugLevel/L_DebugLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_LEVEL_/DebugLevel/L_DebugLevel.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/_LEVEL_/DebugLevel/Sublevel/L_Actor.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/_LEVEL_/DebugLevel/Sublevel/L_Actor.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/0.Core/Message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/0.Core/Message.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/0.Core/System.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/0.Core/System.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/1.Manager/SystemManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/1.Manager/SystemManager.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/1.Manager/WorldManager.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/1.Manager/WorldManager.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/2.Util/Profiler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Private/2.Util/Profiler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/Component.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/Component.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/ECSTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/ECSTypes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/Entity.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/Entity.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/Message.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/Message.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/System.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/0.Core/System.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/1.Manager/SystemManager.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/1.Manager/SystemManager.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/2.Util/Profiler.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/ECS/Public/2.Util/Profiler.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/0.GameManager/MainGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/0.GameManager/MainGameMode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Utility/Carriers/Enum/EEntityType.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Utility/Carriers/Enum/EEntityType.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/1.Entity/Character/MainPlayer/MainPlayer.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Input/MainPlayerController.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Physics/MovementSystem.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/0.GameManager/MainGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/0.GameManager/MainGameMode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayerData/MainPlayerConst.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayerData/MainPlayerConst.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/Struct/FMovementState.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Input/MainPlayerController.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Physics/MovementSystem.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,23 +73,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;C/C++ Project.DarkAnthology.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;BaseMainPlayerMovement&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C/C++ Project.DarkAnthology.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "BaseMainPlayerMovement",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="C/C++ Project.DarkAnthology">
     <configuration name="DarkAnthology" type="CppProject" factoryName="C++ Project">
       <configuration_1 setup="1">
@@ -230,7 +213,8 @@
       <workItem from="1762696933379" duration="1519000" />
       <workItem from="1762699735292" duration="516000" />
       <workItem from="1762700277474" duration="4512000" />
-      <workItem from="1762704892458" duration="7158000" />
+      <workItem from="1762704892458" duration="7494000" />
+      <workItem from="1762874538157" duration="2743000" />
     </task>
     <servers />
   </component>

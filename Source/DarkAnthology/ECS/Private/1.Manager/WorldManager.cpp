@@ -5,7 +5,6 @@
 #include "DarkAnthology/ECS/Public/0.Core/Entity.h"
 #include "DarkAnthology/ECS/Public/0.Core/System.h"
 #include "DarkAnthology/ECS/Public/1.Manager/SystemManager.h"
-#include "Public/3.System/Physics/MovementSystem.h"
 
 
 void UWorldManager::Initialize(FSubsystemCollectionBase& collection)
@@ -53,8 +52,6 @@ void UWorldManager::RegisterSystem(USystem* system) const
 {
 	if (system)
 		systemManager->RegisterSystem(system);
-
-	systemManager->RegisterSystem<UMovementSystem>();
 }
 
 void UWorldManager::RegisterEntity(const URegisterUnRegisterEntityMessage* message)

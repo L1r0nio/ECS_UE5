@@ -2,22 +2,24 @@
 #include "DarkAnthology/Game/Public/0.GameManager/MainGameMode.h"
 #include "DarkAnthology/Game/Public/0.GameManager/GameData/GameConst.h"
 #include "DarkAnthology/ECS/Public/1.Manager/WorldManager.h"
-#include "Public/3.System/Input/MainPlayerController.h"
-#include "Public/1.Entity/Character/MainPlayer/MainPlayer.h"
 
 
 AMainGameMode::AMainGameMode()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	DefaultPawnClass = AMainPlayer::StaticClass();
-	PlayerControllerClass = AMainPlayerController::StaticClass();
 }
 
 void AMainGameMode::BeginPlay()
 {
 	Super::BeginPlay();
-	worldManager = GetGameInstance()->GetSubsystem<UWorldManager>();
 	SetGameSettings();
+	CreateObject();
+}
+
+void AMainGameMode::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	worldManager = nullptr;
 }
 
 void AMainGameMode::SetGameSettings() const
@@ -35,7 +37,10 @@ void AMainGameMode::SetGameSettings() const
 		CVar->Set(GameConst::VSync);
 }
 
-
+void AMainGameMode::CreateObject()
+{
+	worldManager = GetGameInstance()->GetSubsystem<UWorldManager>();
+}
 
 void AMainGameMode::Tick(const float deltaSeconds)
 {
