@@ -41,8 +41,6 @@ void UMovementSystem::RegisterEntity(UEntity* entity)
 {
 	if (mainPlayer != nullptr)
 		return;
-
-	UE_LOG(LogTemp, Error, TEXT("UMovementSystem::RegisterEntity %s"), *entity->GetCharacter()->GetName());
 	
 	if (ShouldProcessEntity(entity))
 	{
@@ -70,6 +68,3 @@ void UMovementSystem::Update(const float deltaTime)
 }
 
 #pragma endregion
-
-
-

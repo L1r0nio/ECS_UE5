@@ -7,6 +7,8 @@
 
 
 class UEntity;
+class UCameraComponent;
+class USpringArmComponent;
 
 
 
@@ -24,8 +26,14 @@ protected:
 	virtual void EndPlay(const EEndPlayReason::Type endPlayReason) override;
 
 private:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere, Category = "ECS|Entity")
 	TObjectPtr<UEntity> entity;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USpringArmComponent> springArm;
+	
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCameraComponent> camera;
 	
 	inline void CreateObject(const FObjectInitializer& objectInitializer);
 	inline void SetSettings();
