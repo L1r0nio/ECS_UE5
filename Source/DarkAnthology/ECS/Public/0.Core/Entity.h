@@ -53,7 +53,7 @@ public:
 	}
 	
 	template <typename TComponent>
-	TComponent* AddComponent(const FObjectInitializer& objectInitializer, FName componentName)
+	TComponent* AddComponent(const FObjectInitializer& objectInitializer, const FName componentName)
 	{
 		static_assert(TIsDerivedFrom<TComponent, UComponent>::IsDerived, "T must derive from UComponent");
 		

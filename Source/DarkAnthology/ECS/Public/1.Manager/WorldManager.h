@@ -30,11 +30,13 @@ private:
 	
 	TLockFreePointerListUnordered<UEntity, ECSConstants::MAX_ENTITY> entitiesToAdd;
 	TQueue<UEntity*> entitiesToRemove;
+
+	inline void CreateObject();
+	inline void Subscribe();
 	
 	void RegisterSystem(USystem* system = nullptr) const;
 	void RegisterEntity(const URegisterUnregisterEntityMessage* message);
 	void UnRegisterEntity(const URegisterUnregisterEntityMessage* message);
 
-	inline void CreateObject();
-	inline void Subscribe();
+	
 };

@@ -9,12 +9,12 @@ public class DarkAnthology : ModuleRules
 	
 		PublicDependencyModuleNames.AddRange(new string[]
 		{
+			"EnhancedInput",
 			"Core",
 			"RenderCore",
 			"CoreUObject",
 			"Engine",
-			"InputCore",
-			"EnhancedInput"
+			"InputCore"
 		});
 		
 		PrivateIncludePaths.AddRange(

@@ -32,5 +32,5 @@ protected:
 
 private:
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UEntity> mainPlayer;
+	TObjectPtr<UEntity> mainPlayerEntity;
 };

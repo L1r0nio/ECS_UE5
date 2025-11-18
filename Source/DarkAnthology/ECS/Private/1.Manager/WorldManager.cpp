@@ -47,11 +47,15 @@ void UWorldManager::Subscribe()
 		bus->Subscribe<URegisterUnregisterEntityMessage>(this,
 		[this](const URegisterUnregisterEntityMessage* message)
 		{
-			if (!message->UnRegisterEntity)
+			if (message && !message->UnRegisterEntity)
+			{
 				RegisterEntity(message);
+			}
 
 			else
+			{
 				UnRegisterEntity(message);
+			}
 		});
 	}
 }

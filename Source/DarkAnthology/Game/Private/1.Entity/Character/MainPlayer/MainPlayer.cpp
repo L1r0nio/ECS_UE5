@@ -14,6 +14,7 @@
 #include "Public/4.Message/EntityLife/RegisterUnregisterEntityMessage.h"
 
 
+
 #pragma region SETTINGS
 
 AMainPlayer::AMainPlayer(const FObjectInitializer& objectInitializer)
@@ -32,19 +33,6 @@ void AMainPlayer::CreateObject(const FObjectInitializer& objectInitializer)
 	
 	camera = objectInitializer.CreateDefaultSubobject<UCameraComponent>
 		(this, TEXT("MainPlayerCamera"));
-}
-
-void AMainPlayer::SetComponent()
-{
-	if (!entity)
-		return;
-	
-	entity->SetActor(this);
-
-	UEntityTypeComponent* entityTypeComponent = entity->AddComponent<UEntityTypeComponent>();
-	entityTypeComponent->EntityType = EEntityType::MainPlayer;
-
-	entity->AddComponent<UMainPlayerMovementComponent>();
 }
 
 void AMainPlayer::SetSettings()
@@ -92,6 +80,16 @@ void AMainPlayer::SetSettings()
 	camera->FieldOfView = MainPlayerConst::FIELD_OF_VIEWS;
 }
 
+void AMainPlayer::SetComponent()
+{
+	entity->SetActor(this);
+
+	UEntityTypeComponent* entityTypeComponent = entity->AddComponent<UEntityTypeComponent>();
+	entityTypeComponent->EntityType = EEntityType::MainPlayer;
+
+	entity->AddComponent<UMainPlayerMovementComponent>();
+}
+
 #pragma endregion
 
 
@@ -101,15 +99,23 @@ void AMainPlayer::SetSettings()
 void AMainPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	SetComponent();
-	SendMessage();
+	
+	if (entity)
+	{
+		SetComponent();
+		SendMessage();
+	}
 }
 
 void AMainPlayer::EndPlay(const EEndPlayReason::Type endPlayReason)
 {
 	Super::EndPlay(endPlayReason);
-	SendMessage(true);
-	entity = nullptr;
+
+	if (entity != nullptr)
+	{
+		SendMessage(true);
+		entity = nullptr;
+	}
 }
 
 #pragma endregion
@@ -120,9 +126,6 @@ void AMainPlayer::EndPlay(const EEndPlayReason::Type endPlayReason)
 
 void AMainPlayer::SendMessage(const bool bIsUnregister)
 {
-	if (!entity)
-		return;
-	
 	if (UMessageBus* bus = UMessageBus::Get())
 	{
 		URegisterUnregisterEntityMessage* message = NewObject<URegisterUnregisterEntityMessage>(this);

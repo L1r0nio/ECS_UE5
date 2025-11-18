@@ -1,6 +1,7 @@
 // L1 Game copyright. 2025. All rights reserved, probably :)
 #include "Public/3.System/Physics/Movement/MovementSystem.h"
 #include "DarkAnthology/ECS/Public/0.Core/Entity.h"
+#include "GameFramework/MovementComponent.h"
 #include "Public/2.Component/Physics/MainPlayerMovementComponent.h"
 #include "Public/2.Component/Utility/Carriers/EntityTypeComponent.h"
 
@@ -11,7 +12,7 @@
 void UMovementSystem::Initialize()
 {
 	Super::Initialize();
-	mainPlayer = nullptr;
+	mainPlayerEntity = nullptr;
 	bNeedEntities = false;
 	bRequiresMainThread = true;
 	bSupportsParallelExecution = false;
@@ -21,8 +22,8 @@ void UMovementSystem::Shutdown()
 {
 	Super::Shutdown();
 	
-	if (mainPlayer)
-		mainPlayer = nullptr;
+	if (mainPlayerEntity)
+		mainPlayerEntity = nullptr;
 }
 
 
@@ -39,21 +40,21 @@ bool UMovementSystem::GetAdditionalConditions(UEntity* entity) const
 
 void UMovementSystem::RegisterEntity(UEntity* entity)
 {
-	if (mainPlayer != nullptr)
+	if (mainPlayerEntity != nullptr)
 		return;
 	
 	if (ShouldProcessEntity(entity))
 	{
-		mainPlayer = entity;
+		mainPlayerEntity = entity;
 		SetEnable(true);
 	}
 }
 
 void UMovementSystem::UnregisterEntity(UEntity* entity)
 {
-	if (mainPlayer != nullptr && entity == mainPlayer)
+	if (mainPlayerEntity != nullptr && entity == mainPlayerEntity)
 	{
-		mainPlayer = nullptr;
+		mainPlayerEntity = nullptr;
 		SetEnable(false);
 	}
 }
@@ -61,10 +62,36 @@ void UMovementSystem::UnregisterEntity(UEntity* entity)
 
 void UMovementSystem::Update(const float deltaTime)
 {
-	if (mainPlayer == nullptr)
+	if (mainPlayerEntity == nullptr)
 		return;
 
-	GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Red, "MovementSystem");
+	if (UMainPlayerMovementComponent* movementComponent = mainPlayerEntity->GetComponent<UMainPlayerMovementComponent>())
+	{
+		const FMovementState& state = movementComponent->MovementStates;
+
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+			
+			
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("----------------------------"));
+			
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+			FString::Printf(TEXT(" Add: %s"), *UEnum::GetValueAsString(state.Addition)));
+
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+			FString::Printf(TEXT(" Dir2: %s"), *UEnum::GetValueAsString(state.MoveTwoDirection)));
+
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+			FString::Printf(TEXT(" Dir1: %s"), *UEnum::GetValueAsString(state.MoveOneDirection)));
+
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+			FString::Printf(TEXT(" Type: %s"), *UEnum::GetValueAsString(state.MoveType)));
+			
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+			FString::Printf(TEXT(" State: %s"), *UEnum::GetValueAsString(state.MoveState)));
+		
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("--------MOVM STATE--------"));
+	}
 }
 
 #pragma endregion
