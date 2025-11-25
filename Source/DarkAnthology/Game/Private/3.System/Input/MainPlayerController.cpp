@@ -58,7 +58,7 @@ void AMainPlayerController::Subscribe()
 
 void AMainPlayerController::RegisterEntity(const URegisterUnregisterEntityMessage* message)
 {
-	if (mainPlayerEntity != nullptr ||
+	if (mainPlayerEntity ||
 		message->Entity->GetComponent<UEntityTypeComponent>()->EntityType != EEntityType::MainPlayer)
 	{
 		return;
@@ -73,7 +73,7 @@ void AMainPlayerController::RegisterEntity(const URegisterUnregisterEntityMessag
 
 void AMainPlayerController::UnRegisterEntity(const URegisterUnregisterEntityMessage* message)
 {
-	if (mainPlayerEntity != nullptr)
+	if (mainPlayerEntity && movementComponent)
 	{
 		mainPlayerEntity = nullptr;
 		movementComponent = nullptr;
@@ -152,10 +152,19 @@ void AMainPlayerController::BindAction()
 
 void AMainPlayerController::Move(const FInputActionValue& value)
 {
-	if (mainPlayerEntity && movementComponent)
+	if (mainPlayerEntity == nullptr || movementComponent == nullptr ||  !movementComponent->bIsEnableMovement)
+		return;
+	
+	FMovementState& states = movementComponent->MovementStates;
+	const FVector2D movementVector = value.Get<FVector2D>();
+		
+	if (movementVector.IsZero() || IsOppositeButtonPressed(movementVector.X, movementVector.Y))
 	{
-		movementComponent->MovementStates.MoveState = value.Get<FVector2D>().IsZero() ? EMovementState::Place : EMovementState::Move;
+		SetMovementState(states, EMovementState::Place);
+		return;
 	}
+
+	ApplyDirectionalInput(states, movementVector.X, movementVector.Y);
 }
 
 #pragma endregion
@@ -163,5 +172,45 @@ void AMainPlayerController::Move(const FInputActionValue& value)
 
 
 #pragma region ADDITIONAL
+
+void AMainPlayerController::ApplyDirectionalInput(FMovementState& states, const float x, const float y) const
+{
+	using enum EMovementState;
+	
+	const EMovementState directionOne =
+		(y > 0.0f) ? Forward :
+		(y < 0.0f) ? Backward :
+		None;
+
+	const EMovementState directionTwo =
+		(x > 0.0f) ? Right :
+		(x < 0.0f) ? Left :
+		None;
+
+	SetMovementState(states, Move, Walk, directionOne, directionTwo);
+}
+
+
+void AMainPlayerController::SetMovementState(FMovementState& states, const EMovementState moveState,
+	const EMovementState moveType, const EMovementState dir1, const EMovementState dir2) const
+{
+	states.MoveState = moveState;
+	states.MoveType = moveType;
+	states.MoveOneDirection = dir1;
+	states.MoveTwoDirection = dir2;
+}
+
+bool AMainPlayerController::IsOppositeButtonPressed(const float x, const float y) const
+{
+	const bool oppositeX =
+		(x > 0.0f && IsInputKeyDown(EKeys::A)) ||
+		(x < 0.0f && IsInputKeyDown(EKeys::D));
+
+	const bool oppositeY =
+		(y > 0.0f && IsInputKeyDown(EKeys::S)) ||
+		(y < 0.0f && IsInputKeyDown(EKeys::W));
+
+	return oppositeX || oppositeY;
+}
 
 #pragma endregion

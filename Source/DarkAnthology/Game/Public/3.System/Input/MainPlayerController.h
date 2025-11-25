@@ -3,9 +3,11 @@
 #include "CoreMinimal.h"
 #include "InputMappingContext.h"
 #include "GameFramework/PlayerController.h"
+#include "Public/2.Component/Physics/Enum/EMovementState.h"
 #include "MainPlayerController.generated.h"
 
 
+struct FMovementState;
 class UEntity;
 class AMainPlayer;
 class UMainPlayerMovementComponent;
@@ -59,4 +61,14 @@ private:
 	}
 
 	void Move(const FInputActionValue& value);
+
+	inline void ApplyDirectionalInput(FMovementState& states, const float x, const float y) const;
+	
+	inline void SetMovementState(FMovementState& states,
+		const EMovementState moveState = EMovementState::Place,
+		const EMovementState moveType = EMovementState::None,
+		const EMovementState dir1 = EMovementState::None,
+		const EMovementState dir2 = EMovementState::None) const;
+
+	bool IsOppositeButtonPressed(const float x, const float y) const;
 };

@@ -67,31 +67,68 @@ void UMovementSystem::Update(const float deltaTime)
 
 	if (UMainPlayerMovementComponent* movementComponent = mainPlayerEntity->GetComponent<UMainPlayerMovementComponent>())
 	{
-		const FMovementState& state = movementComponent->MovementStates;
-
-		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
-		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
-			
-			
-		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("----------------------------"));
-			
-		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+		if (movementComponent->bIsEnableMovement)
+		{
+			const FMovementState& state = movementComponent->MovementStates;
+	            
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+            				
+            				
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("----------------------------"));
+            				
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 			FString::Printf(TEXT(" Add: %s"), *UEnum::GetValueAsString(state.Addition)));
-
-		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+	            
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 			FString::Printf(TEXT(" Dir2: %s"), *UEnum::GetValueAsString(state.MoveTwoDirection)));
-
-		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+	            
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 			FString::Printf(TEXT(" Dir1: %s"), *UEnum::GetValueAsString(state.MoveOneDirection)));
-
-		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+	            
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 			FString::Printf(TEXT(" Type: %s"), *UEnum::GetValueAsString(state.MoveType)));
-			
-		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+            				
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 			FString::Printf(TEXT(" State: %s"), *UEnum::GetValueAsString(state.MoveState)));
-		
-		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("--------MOVM STATE--------"));
+            			
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("--------MOVM STATE--------"));
+		}
 	}
 }
 
 #pragma endregion
+
+
+
+
+
+
+
+/*if (UMainPlayerMovementComponent* movementComponent = mainPlayerEntity->GetComponent<UMainPlayerMovementComponent>())
+{
+const FMovementState& state = movementComponent->MovementStates;
+
+GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+			
+			
+GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("----------------------------"));
+			
+GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+FString::Printf(TEXT(" Add: %s"), *UEnum::GetValueAsString(state.Addition)));
+
+GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+FString::Printf(TEXT(" Dir2: %s"), *UEnum::GetValueAsString(state.MoveTwoDirection)));
+
+GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+FString::Printf(TEXT(" Dir1: %s"), *UEnum::GetValueAsString(state.MoveOneDirection)));
+
+GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+FString::Printf(TEXT(" Type: %s"), *UEnum::GetValueAsString(state.MoveType)));
+			
+GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+FString::Printf(TEXT(" State: %s"), *UEnum::GetValueAsString(state.MoveState)));
+		
+GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("--------MOVM STATE--------"));
+}*/

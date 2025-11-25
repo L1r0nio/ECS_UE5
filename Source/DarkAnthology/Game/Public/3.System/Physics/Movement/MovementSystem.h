@@ -5,7 +5,7 @@
 #include "MovementSystem.generated.h"
 
 
-
+struct FMovementState;
 class UEntity;
 
 
@@ -33,4 +33,6 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UEntity> mainPlayerEntity;
+
+	
 };
