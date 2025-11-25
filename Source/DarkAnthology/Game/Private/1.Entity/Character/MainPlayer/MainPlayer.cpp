@@ -135,7 +135,13 @@ void AMainPlayer::Tick(const float deltaTime)
             				
             				
 				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("----------------------------"));
-            				
+
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Green, 
+				FString::Printf(TEXT(" Speed: %f"), GetCharacterMovement()->MaxWalkSpeed));
+				
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Green, 
+				FString::Printf(TEXT(" LookAxis: %s"), *entity->GetComponent<UMainPlayerMovementComponent>()->LookAxis.ToString()));
+				
 				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 				FString::Printf(TEXT(" Add: %s"), *UEnum::GetValueAsString(state.Addition)));
 	            
@@ -151,7 +157,7 @@ void AMainPlayer::Tick(const float deltaTime)
 				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 				FString::Printf(TEXT(" State: %s"), *UEnum::GetValueAsString(state.MoveState)));
             			
-				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("--------MOVM STATE--------"));
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("---------MOV STATE--------"));
 			}
 		}
 	}

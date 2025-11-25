@@ -5,6 +5,8 @@
 #include "MovementSystem.generated.h"
 
 
+enum class EMovementState : uint8;
+class UMainPlayerMovementComponent;
 struct FMovementState;
 class UEntity;
 
@@ -33,6 +35,11 @@ protected:
 private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UEntity> mainPlayerEntity;
-
 	
+	void Walk(const UMainPlayerMovementComponent& movementComponent, ACharacter& mainPlayer) const;
+	void Look(UMainPlayerMovementComponent& movementComponent, ACharacter& mainPlayer) const;
+	
+
+	FVector2D GetLocalDirection(const FMovementState& movementState, bool& bIsDiagonal) const;
+	void SetSpeed(const EMovementState state) const;
 };

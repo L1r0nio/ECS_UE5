@@ -15,9 +15,12 @@
     <list default="true" id="f193cf55-705d-4a36-ac2b-967d44ca4da6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DarkAnthology/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DarkAnthology/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/1.Entity/Character/MainPlayer/MainPlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/1.Entity/Character/MainPlayer/MainPlayer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Input/MainPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Input/MainPlayerController.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Physics/Movement/MovementSystem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Private/3.System/Physics/Movement/MovementSystem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayerData/MainPlayerConst.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/1.Entity/Character/MainPlayer/MainPlayerData/MainPlayerConst.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/MainPlayerMovementComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/2.Component/Physics/MainPlayerMovementComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Input/MainPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Input/MainPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Physics/Movement/MovementSystem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DarkAnthology/Game/Public/3.System/Physics/Movement/MovementSystem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +222,7 @@
       <workItem from="1763905786694" duration="333000" />
       <workItem from="1763907241374" duration="1932000" />
       <workItem from="1764066381130" duration="4573000" />
-      <workItem from="1764073317095" duration="9279000" />
+      <workItem from="1764073317095" duration="17236000" />
     </task>
     <servers />
   </component>

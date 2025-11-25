@@ -7,10 +7,6 @@
 
 
 
-class USpringArmComponent;
-
-
-
 UCLASS()
 class DARKANTHOLOGY_API UMainPlayerMovementComponent : public UComponent
 {
@@ -22,7 +18,7 @@ public:
 	FMovementState MovementStates = FMovementState();
 
 	UPROPERTY(VisibleAnywhere)
-	FVector2D LookAxis;
+	FVector2D LookAxis = FVector2D::ZeroVector;
 
 	UPROPERTY(VisibleAnywhere)
 	bool bIsEnableMovement = true;

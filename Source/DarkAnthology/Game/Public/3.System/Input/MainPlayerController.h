@@ -34,6 +34,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Input|Action")
 	TObjectPtr<UInputAction> moveAction;
+
+	UPROPERTY(VisibleAnywhere, Category = "Input|Action")
+	TObjectPtr<UInputAction> lookAction;
  
 private:
 	UPROPERTY()
@@ -61,6 +64,7 @@ private:
 	}
 
 	void Move(const FInputActionValue& value);
+	void Look(const FInputActionValue& value);
 
 	inline void ApplyDirectionalInput(FMovementState& states, const float x, const float y) const;
 	

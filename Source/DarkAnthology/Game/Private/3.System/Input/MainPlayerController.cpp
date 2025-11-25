@@ -27,6 +27,7 @@ void AMainPlayerController::CreateObject()
 	movementComponent = nullptr;
 	mainMappingContext = NewObject<UInputMappingContext>(this, TEXT("IMC_Main"));
 	moveAction = NewObject<UInputAction>(this, TEXT("IMC_Move"));
+	lookAction = NewObject<UInputAction>(this, TEXT("IMC_Look"));
 }
 
 void AMainPlayerController::Subscribe()
@@ -46,7 +47,6 @@ void AMainPlayerController::Subscribe()
 				UnRegisterEntity(message);
 			}
 		});
-		
 	}
 }
 
@@ -113,6 +113,7 @@ void AMainPlayerController::SetMappingContext() const
 void AMainPlayerController::SetActionValue() const
 {
 	moveAction->ValueType = EInputActionValueType::Axis2D;
+	lookAction->ValueType = EInputActionValueType::Axis2D;
 }
 
 void AMainPlayerController::SetKeyForAction() const
@@ -121,6 +122,8 @@ void AMainPlayerController::SetKeyForAction() const
 	mainMappingContext->MapKey(moveAction, EKeys::S);
 	mainMappingContext->MapKey(moveAction, EKeys::A);
 	mainMappingContext->MapKey(moveAction, EKeys::D);
+
+	mainMappingContext->MapKey(lookAction, EKeys::Mouse2D);
 }
 
 void AMainPlayerController::SetModifierForKey() const
@@ -128,11 +131,21 @@ void AMainPlayerController::SetModifierForKey() const
 	constexpr uint8 moveActionWIndex = 0; 
 	constexpr uint8 moveActionSIndex = 1;
 	constexpr uint8 moveActionAIndex = 2;
+	constexpr uint8 lookActionIndex = 4;
 
 	AddModifierForAction<UInputModifierSwizzleAxis>(moveActionWIndex);
 	AddModifierForAction<UInputModifierSwizzleAxis>(moveActionSIndex);
 	AddModifierForAction<UInputModifierNegate>(moveActionSIndex);
 	AddModifierForAction<UInputModifierNegate>(moveActionAIndex);
+
+	mainMappingContext->GetMapping(lookActionIndex).Modifiers.Add(
+	([](){
+		UInputModifierNegate* modifier = NewObject<UInputModifierNegate>(); 
+		modifier->bY = true;
+		modifier->bX = false; 
+		modifier->bZ = false; 
+		return modifier;
+	})());
 }
 
 void AMainPlayerController::BindAction()
@@ -141,6 +154,8 @@ void AMainPlayerController::BindAction()
 	{
 		enhancedInputComponent->BindAction(moveAction, ETriggerEvent::Triggered, this, &AMainPlayerController::Move);
 		enhancedInputComponent->BindAction(moveAction, ETriggerEvent::Completed, this, &AMainPlayerController::Move);
+
+		enhancedInputComponent->BindAction(lookAction, ETriggerEvent::Triggered, this, &AMainPlayerController::Look);
 	}
 }
 
@@ -165,6 +180,15 @@ void AMainPlayerController::Move(const FInputActionValue& value)
 	}
 
 	ApplyDirectionalInput(states, movementVector.X, movementVector.Y);
+}
+
+void AMainPlayerController::Look(const FInputActionValue& value)
+{
+	if (mainPlayerEntity == nullptr || movementComponent == nullptr ||  !movementComponent->bIsEnableLook)
+		return;
+
+	movementComponent->LookAxis.X = value.Get<FVector2D>().X;
+	movementComponent->LookAxis.Y = value.Get<FVector2D>().Y;
 }
 
 #pragma endregion
