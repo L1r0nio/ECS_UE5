@@ -5,6 +5,7 @@
 #include "DarkAnthology/ECS/Public/0.Core/Entity.h"
 #include "DarkAnthology/ECS/Public/0.Core/System.h"
 #include "DarkAnthology/ECS/Public/1.Manager/SystemManager.h"
+#include "Public/3.System/Physics/Movement/CameraWalkTiltSystem.h"
 #include "Public/3.System/Physics/Movement/MovementSystem.h"
 
 
@@ -73,6 +74,7 @@ void UWorldManager::RegisterSystem(USystem* system) const
 	
 	
 	systemManager->RegisterSystem<UMovementSystem>();
+	systemManager->RegisterSystem<UCameraWalkTiltSystem>();
 }
 
 void UWorldManager::RegisterEntity(const URegisterUnregisterEntityMessage* message)

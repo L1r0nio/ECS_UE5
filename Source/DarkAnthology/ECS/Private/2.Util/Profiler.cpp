@@ -422,11 +422,11 @@ void UProfiler::SaveReport(const FString& filePath) const
 	
 	const bool bSuccess = FFileHelper::SaveStringToFile(report, *filePath);
 
-	if (bSuccess)
+	if (bSuccess) [[likely]]
 	{
-		UE_LOG(LogTemp, Log, TEXT("✓ Отчет профилировщика сохранен в %s"), *filePath);
+		//UE_LOG(LogTemp, Log, TEXT("✓ Отчет профилировщика сохранен в %s"), *filePath);
 	}
-	else
+	else [[unlikely]]
 	{
 		UE_LOG(LogTemp, Error, TEXT("✗ Не удалось сохранить отчет в %s"), *filePath);
 	}

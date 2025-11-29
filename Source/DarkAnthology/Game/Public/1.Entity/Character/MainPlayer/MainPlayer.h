@@ -9,6 +9,7 @@
 class UEntity;
 class UCameraComponent;
 class USpringArmComponent;
+class USceneComponent;
 
 
 
@@ -35,6 +36,9 @@ private:
 	
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCameraComponent> camera;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USceneComponent> cameraWalkTiltPoint;
 	
 	inline void CreateObject(const FObjectInitializer& objectInitializer);
 	inline void SetSettings();

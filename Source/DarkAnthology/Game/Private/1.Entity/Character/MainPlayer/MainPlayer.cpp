@@ -1,6 +1,5 @@
 // L1 Game copyright. 2025. All rights reserved, probably :)
 #include "Public/1.Entity/Character/MainPlayer/MainPlayer.h"
-
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "DarkAnthology/ECS/Public/0.Core/Entity.h"
@@ -10,6 +9,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Public/1.Entity/Character/MainPlayer/MainPlayerData/MainPlayerConst.h"
 #include "Public/2.Component/Physics/MainPlayerMovementComponent.h"
+#include "Public/2.Component/Utility/Carriers/CameraWalkTiltPointComponent.h"
 #include "Public/2.Component/Utility/Carriers/EntityTypeComponent.h"
 #include "Public/4.Message/EntityLife/RegisterUnregisterEntityMessage.h"
 
@@ -33,6 +33,9 @@ void AMainPlayer::CreateObject(const FObjectInitializer& objectInitializer)
 	
 	camera = objectInitializer.CreateDefaultSubobject<UCameraComponent>
 		(this, TEXT("MainPlayerCamera"));
+
+	cameraWalkTiltPoint = objectInitializer.CreateDefaultSubobject<USceneComponent>
+		(this, TEXT("CameraWalkTiltPoint"));
 }
 
 void AMainPlayer::SetSettings()
@@ -73,9 +76,12 @@ void AMainPlayer::SetSettings()
 	springArm->CameraRotationLagSpeed = MainPlayerConst::CAMERA_ROTATION_LAG_SPEED;
 	springArm->TargetArmLength = 0.0f;
 
+	cameraWalkTiltPoint->SetupAttachment(springArm);
+	cameraWalkTiltPoint->SetComponentTickEnabled(false);
+	cameraWalkTiltPoint->bTickInEditor = false;
 	
-	camera->SetupAttachment(springArm);
-	camera->AddRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
+	camera->SetupAttachment(cameraWalkTiltPoint);
+	camera->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
 	camera->bUsePawnControlRotation = false;
 	camera->FieldOfView = MainPlayerConst::FIELD_OF_VIEWS;
 }
@@ -87,7 +93,11 @@ void AMainPlayer::SetComponent()
 	UEntityTypeComponent* entityTypeComponent = entity->AddComponent<UEntityTypeComponent>();
 	entityTypeComponent->EntityType = EEntityType::MainPlayer;
 
-	entity->AddComponent<UMainPlayerMovementComponent>();
+	UMainPlayerMovementComponent* movementComponent = entity->AddComponent<UMainPlayerMovementComponent>();
+	movementComponent->SpringArm = springArm;
+	
+	UCameraWalkTiltPointComponent* cameraWalkTiltPointComponent = entity->AddComponent<UCameraWalkTiltPointComponent>();
+	cameraWalkTiltPointComponent->CameraWalkTiltPoint = cameraWalkTiltPoint;
 }
 
 #pragma endregion
@@ -122,6 +132,37 @@ void AMainPlayer::Tick(const float deltaTime)
 {
 	Super::Tick(deltaTime);
 
+	if (MainPlayerConst::IS_SHOW_SYSTEMS_UPDATE)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+		
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Red, TEXT("*-------------------------------------*"));
+		
+		if(MainPlayerConst::IsCameraWalkTiltSystemUpdate)
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Red, TEXT(" CameraWalkTiltSystemUpdate"));
+		
+		if(MainPlayerConst::bIsMovemetSystemUpdate)
+			GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Red, TEXT(" MovmentCharacterSystemUpdate"));
+		
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Red, TEXT("*----------SYSTEM UPDATE----------*"));
+	}
+
+	if (MainPlayerConst::IS_SHOW_CAMERA_TILT_STATE)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+            				
+            				
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Magenta, TEXT("-----------------------------"));
+		
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Magenta,
+		FString::Printf(TEXT("Camera walk tilt X: %f"),
+			cameraWalkTiltPoint->GetRelativeRotation().Roll));
+		
+		GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Magenta, TEXT("--------CAMERA TILT--------"));
+	}
+	
 	if (MainPlayerConst::IS_SHOW_MOVEMENT_STATE)
 	{
 		if (UMainPlayerMovementComponent* movementComponent = entity->GetComponent<UMainPlayerMovementComponent>())
@@ -136,11 +177,21 @@ void AMainPlayer::Tick(const float deltaTime)
             				
 				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT("----------------------------"));
 
-				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Green, 
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+				FString::Printf(TEXT(" CapsuleHalfHeight: %f"), GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
+
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
+				FString::Printf(TEXT(" SpringArmLocatonZ: %f"), springArm->GetRelativeLocation().Z));
+				
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
+
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 				FString::Printf(TEXT(" Speed: %f"), GetCharacterMovement()->MaxWalkSpeed));
 				
-				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Green, 
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 				FString::Printf(TEXT(" LookAxis: %s"), *entity->GetComponent<UMainPlayerMovementComponent>()->LookAxis.ToString()));
+
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, TEXT(""));
 				
 				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Silver, 
 				FString::Printf(TEXT(" Add: %s"), *UEnum::GetValueAsString(state.Addition)));
@@ -161,7 +212,6 @@ void AMainPlayer::Tick(const float deltaTime)
 			}
 		}
 	}
-	
 }
 
 #pragma endregion

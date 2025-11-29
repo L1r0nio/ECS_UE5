@@ -6,6 +6,12 @@ namespace MainPlayerConst
 {
 	//------------------------------------------------------ DEBUG -----------------------------------------------------
 	inline constexpr bool IS_SHOW_MOVEMENT_STATE = true;
+	inline constexpr bool IS_SHOW_CAMERA_TILT_STATE = true;
+	inline constexpr bool IS_SHOW_SYSTEMS_UPDATE = true;
+	inline constexpr bool IS_SHOW_UNCROUCH_BOX_COLLISION = true;
+
+	bool bIsMovemetSystemUpdate = false;
+	bool IsCameraWalkTiltSystemUpdate = false;
 	// -----------------------------------------------------------------------------------------------------------------
 
 	
@@ -23,6 +29,10 @@ namespace MainPlayerConst
 
 	inline constexpr float STANDARD_SPRING_ARM_LOCATION_Z = 50.0f;
 	inline constexpr float CROUCH_SPRING_ARM_LOCATION_Z = 30.0f;
+
+	inline constexpr bool IS_CAMERA_WALK_TILT_ENABLE = true;
+	inline constexpr float CAMERA_WALK_TILT_DEGREE = 1.1f;
+	inline constexpr float CAMERA_WALK_TILT_SPEED = 2.0f;
 	//------------------------------------------------------------------------------------------------------------------
 
 	
@@ -30,6 +40,8 @@ namespace MainPlayerConst
 	//----------------------------------------------------- CAPSULE ----------------------------------------------------
 	inline constexpr float STANDARD_CAPSULE_HALF_HEIGHT = 70.0f;
 	inline constexpr float STANDARD_CAPSULE_RADIUS = 28.0f;
+
+	inline constexpr float CROUCH_CAPSULE_HALF_HEIGHT = 28.0f;
 	// -----------------------------------------------------------------------------------------------------------------
 
 	

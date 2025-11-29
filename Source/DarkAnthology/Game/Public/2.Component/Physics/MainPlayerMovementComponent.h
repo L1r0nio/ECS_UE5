@@ -7,6 +7,10 @@
 
 
 
+class USpringArmComponent;
+
+
+
 UCLASS()
 class DARKANTHOLOGY_API UMainPlayerMovementComponent : public UComponent
 {
@@ -14,6 +18,9 @@ class DARKANTHOLOGY_API UMainPlayerMovementComponent : public UComponent
 	DECLARE_TYPED_COMPONENT(UMainPlayerMovementComponent)
 
 public:
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USpringArmComponent> SpringArm = nullptr;
+	
 	UPROPERTY(VisibleAnywhere)
 	FMovementState MovementStates = FMovementState();
 

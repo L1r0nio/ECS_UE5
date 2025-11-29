@@ -107,6 +107,7 @@ void USystemManager::UpdateSystem(const float deltaTime)
 
 	const FString FilePath = FPaths::ProjectSavedDir() / TEXT("ECSProfilerReport.txt");
 	ECSProfiler->SaveReport(FilePath);
+	//ECSProfiler->PrintReport();
 }
 
 
